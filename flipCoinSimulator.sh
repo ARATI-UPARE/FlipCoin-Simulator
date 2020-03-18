@@ -5,29 +5,43 @@
 declare -A dict
 
 flip=0
-head=0
-tail=0
+hh=0
+ht=0
+th=0
+tt=0
 
-# For singleton combination.
+# For Doublet combination.
 while [[ $flip -lt 10 ]]
 do
-		coin=$((RANDOM%2))
-		if [[ $coin -eq 1 ]]
+		coin1=$((RANDOM%2))
+		coin2=$((RANDOM%2))
+		if [[ $coin1 -eq 1 && $coin2 -eq 1 ]]
 		then
-				(( head++ ))
+				(( hh++ ))
+		elif [[ $coin1 -eq 1 && $coin2 -eq 0 ]]
+		then
+				(( ht++ ))
+		elif [[ $coin1 -eq 0 && $coin2 -eq 1 ]]
+		then
+				(( th++ ))
 		else
-				(( tail++ ))
+				(( tt++ ))
 		fi
 		(( flip++ ))
 done
 
-perHead=`echo "scale=2;($head / 10 ) * 100"|bc`
-perTail=`echo "scale=2;($tail / 10 ) * 100"|bc`
-dict=( [Head]=$head [Tail]=$tail )
+perHH=`echo "scale=2;($hh / 10 ) * 100"|bc`
+perHT=`echo "scale=2;($ht / 10 ) * 100"|bc`
+perTH=`echo "scale=2;($th / 10 ) * 100"|bc`
+perTT=`echo "scale=2;($tt / 10 ) * 100"|bc`
+
+dict=( [HH]=$hh [HT]=$ht [TH]=$th [TT]=$tt )
 echo "${!dict[@]}=${dict[@]}"
 
-echo "Percentage of Head is : $perHead"
-echo "Percentage of Tail is : $perTail"
+echo "Percentage of HH is : $perHH"
+echo "Percentage of HT is : $perHT"
+echo "Percentage of TH is : $perTH"
+echo "Percentage of TT is : $perTT"
 
 
 
