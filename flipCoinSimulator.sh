@@ -30,10 +30,10 @@ do
 		(( flip++ ))
 done
 
-perHH=`echo "scale=2;($hh / 10 ) * 100"|bc`
-perHT=`echo "scale=2;($ht / 10 ) * 100"|bc`
-perTH=`echo "scale=2;($th / 10 ) * 100"|bc`
-perTT=`echo "scale=2;($tt / 10 ) * 100"|bc`
+perHH=`echo "scale=2; ($hh * 100) / 10"| bc`
+perHT=`echo "scale=2; ($ht * 100) / 10"| bc`
+perTH=`echo "scale=2; ($th * 100) / 10"| bc`
+perTT=`echo "scale=2; ($tt * 100) / 10"| bc`
 
 dict=( [HH]=$hh [HT]=$ht [TH]=$th [TT]=$tt )
 echo "${!dict[@]}=${dict[@]}"
